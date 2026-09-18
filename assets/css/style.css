@@ -246,7 +246,7 @@ ul{ list-style:none; }
 }
 .merit-card h3::after{
   content:''; position:absolute; left:0; bottom:0;
-  width:200px; height:2px; background:var(--accent);
+  width:50%; height:2px; background:var(--accent);
 }
 .merit-card p{ color:var(--text-dim); font-size:15px; }
 
