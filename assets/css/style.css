@@ -23,9 +23,17 @@
 
 *{ box-sizing:border-box; margin:0; padding:0; }
 
-html{ scroll-behavior:smooth; }
+html{
+  scroll-behavior:smooth;
+  overflow-x:hidden;               /* 가로 스크롤 차단 (안전장치) */
+  -webkit-text-size-adjust:100%;   /* iOS 가로모드 글자 자동확대 방지 */
+}
+
+/* 어떤 요소도 화면 밖으로 못 나가게 */
+img, svg, video, iframe, table{ max-width:100%; }
 
 body{
+  width:100%; max-width:100%; overflow-x:hidden;
   background:var(--bg);
   color:var(--text);
   font-family:'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -222,10 +230,10 @@ ul{ list-style:none; }
 }
 .price-note{ margin-top:26px; font-size:13.5px; color:var(--text-dim); }
 
-/* ---------- 장점 (이미지 없음) ---------- */
+/* ---------- 장점 (이미지 없음, 2 x 2) ---------- */
 .merit-grid{
   display:grid; gap:18px;
-  grid-template-columns:repeat(auto-fit, minmax(400px,1fr));
+  grid-template-columns:repeat(2, 1fr);   /* ← 항상 2열 = 2x2 */
 }
 .merit-card{
   position:relative; overflow:hidden;
@@ -246,7 +254,7 @@ ul{ list-style:none; }
 }
 .merit-card h3::after{
   content:''; position:absolute; left:0; bottom:0;
-  width:50%; height:2px; background:var(--accent);
+  width:32px; height:2px; background:var(--accent);
 }
 .merit-card p{ color:var(--text-dim); font-size:15px; }
 
@@ -311,6 +319,13 @@ ul{ list-style:none; }
   min-height:360px; border-radius:var(--radius);
   border:1px solid var(--line); overflow:hidden; background:var(--panel);
 }
+/* iOS 사파리는 iframe 을 콘텐츠 크기만큼 늘려버립니다.
+   width:1px + min-width:100% 조합이 이 동작을 막는 표준 우회법입니다. */
+.map iframe{
+  display:block;
+  width:1px; min-width:100%; max-width:100%;
+  border:0;
+}
 .map-placeholder{
   height:100%; min-height:360px;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
@@ -346,6 +361,9 @@ ul{ list-style:none; }
   .nav{ display:none; }
   .greeting-body{ padding:26px 22px; font-size:15.5px; }
   .price-amount{ font-size:34px; }
+  .merit-grid{ grid-template-columns:1fr; }   /* 폰에서는 1열로 */
+  .merit-card{ padding:26px 22px; }
+  .merit-num{ font-size:44px; }
   .section{ padding:64px 0; }
   .float-call{ display:block; }
   .site-footer{ padding-bottom:110px; }
