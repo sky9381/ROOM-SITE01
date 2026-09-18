@@ -1,0 +1,360 @@
+/* ===================================================
+   명지국제오션룸 - 스타일시트
+   색상만 바꾸고 싶으면 :root 변수만 수정하세요.
+   =================================================== */
+
+:root{
+  --bg:        #0b0d12;
+  --bg-alt:    #11141c;
+  --panel:     #161a24;
+  --line:      #262c3a;
+  --text:      #e8eaf0;
+  --text-dim:  #98a0b3;
+  --accent:    #c9a227;   /* 포인트 골드 */
+  --accent-2:  #e3c766;
+  --radius:    14px;
+  --wrap:      1140px;
+
+  /* 이미지 위에 덮는 검은 레이어 농도 (0 = 없음, 1 = 완전 검정)
+     0.3 = 살짝  /  0.45 = 기본  /  0.6 = 많이 어둡게 */
+  --img-dim:        .45;
+  --img-dim-hover:  .15;
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+
+html{ scroll-behavior:smooth; }
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight:400;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+
+a{ color:inherit; text-decoration:none; }
+ul{ list-style:none; }
+
+.wrap{
+  width:100%;
+  max-width:var(--wrap);
+  margin:0 auto;
+  padding:0 20px;   /* 모바일 좌우 여백 */
+}
+
+.muted{ color:var(--text-dim); font-size:.86em; }
+
+/* ---------- 버튼 ---------- */
+.btn{
+  display:inline-block;
+  padding:14px 28px;
+  border-radius:100px;
+  font-weight:600;
+  font-size:15px;
+  border:1px solid transparent;
+  transition:.2s ease;
+  white-space:nowrap;
+}
+.btn-primary{ background:var(--accent); color:#1a1300; }
+.btn-primary:hover{ background:var(--accent-2); }
+.btn-ghost{ border-color:var(--line); color:var(--text); }
+.btn-ghost:hover{ border-color:var(--accent); color:var(--accent); }
+.btn-sm{ padding:9px 18px; font-size:14px; border:1px solid var(--accent); color:var(--accent); }
+.btn-sm:hover{ background:var(--accent); color:#1a1300; }
+
+/* ---------- 헤더 ---------- */
+.site-header{
+  position:fixed; top:0; left:0; right:0; z-index:50;
+  transition:.3s ease;
+  background:transparent;
+}
+.site-header.scrolled{
+  background:rgba(11,13,18,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{
+  display:flex; align-items:center; justify-content:space-between;
+  height:68px; gap:20px;
+}
+.logo{ font-weight:800; font-size:19px; letter-spacing:-.02em; color:var(--accent); }
+.nav{ display:flex; gap:26px; }
+.nav a{ font-size:15px; color:var(--text-dim); transition:.2s; }
+.nav a:hover{ color:var(--text); }
+
+/* ---------- 히어로 ---------- */
+.hero{
+  position:relative;
+  min-height:92vh;
+  display:flex; align-items:center;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute; inset:0;
+  background:
+    radial-gradient(1000px 500px at 70% 20%, rgba(201,162,39,.14), transparent 60%),
+    linear-gradient(180deg,#0e1118 0%,#0b0d12 100%);
+}
+
+/* 히어로에 실제 사진을 쓸 때는 위 .hero-bg 를 아래처럼 바꾸세요.
+   맨 앞의 linear-gradient 가 사진 위에 덮이는 검은 레이어입니다.
+   (배경 이미지는 여러 장을 겹칠 수 있고, 먼저 쓴 것이 위로 올라옵니다)
+
+.hero-bg{
+  position:absolute; inset:0;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.55), rgba(11,13,18,.9)),
+    url('../img/hero.jpg') center/cover no-repeat;
+}
+*/
+.hero-inner{ position:relative; text-align:center; padding:120px 20px 80px; }
+.eyebrow{
+  color:var(--accent); font-size:14px; font-weight:600;
+  letter-spacing:.18em; margin-bottom:18px;
+}
+.hero h1{
+  font-size:clamp(34px, 7vw, 62px);
+  font-weight:800; letter-spacing:-.03em; line-height:1.2;
+  margin-bottom:22px;
+}
+.lead{ color:var(--text-dim); font-size:clamp(15px,2.4vw,18px); margin-bottom:38px; }
+.hero-cta{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+
+/* ---------- 섹션 공통 ---------- */
+.section{ padding:96px 0; }
+.section-alt{ background:var(--bg-alt); }
+.section-eyebrow{
+  color:var(--accent); font-size:12px; font-weight:700;
+  letter-spacing:.2em; margin-bottom:10px;
+}
+.section-title{
+  font-size:clamp(26px,4.5vw,38px); font-weight:800;
+  letter-spacing:-.02em; margin-bottom:16px;
+}
+.section-desc{ color:var(--text-dim); max-width:640px; margin-bottom:44px; }
+
+/* ---------- 특징 그리드 ---------- */
+.feature-grid{
+  display:grid; gap:16px;
+  grid-template-columns:repeat(auto-fit, minmax(230px,1fr));
+}
+.feature{
+  background:var(--panel); border:1px solid var(--line);
+  border-radius:var(--radius); padding:26px 22px;
+}
+.feature h3{ font-size:17px; margin-bottom:8px; color:var(--accent-2); }
+.feature p{ color:var(--text-dim); font-size:14.5px; }
+
+/* ---------- 인사말 ---------- */
+.greeting{
+  display:grid; gap:28px;
+  grid-template-columns:1.6fr 1fr;
+  align-items:start;
+}
+.greeting-body{
+  background:var(--panel); border:1px solid var(--line);
+  border-left:3px solid var(--accent);
+  border-radius:var(--radius);
+  padding:34px 32px;
+  font-size:16px; line-height:1.95;
+}
+.greeting-body p + p{ margin-top:22px; }
+.greeting-quote{
+  color:var(--accent-2); font-weight:600; font-size:17px;
+  padding-top:22px; border-top:1px solid var(--line);
+}
+.greeting-quote span{
+  display:inline-block; margin-top:6px;
+  color:var(--text-dim); font-weight:400; font-size:15px;
+}
+.greeting-sign{
+  background:var(--panel); border:1px solid var(--line);
+  border-radius:var(--radius); padding:30px 26px; text-align:center;
+}
+.sign-name{ font-size:26px; font-weight:800; letter-spacing:-.02em; }
+.sign-name span{ font-size:16px; font-weight:400; color:var(--text-dim); margin-left:4px; }
+.sign-tel{
+  display:block; margin:14px 0 10px;
+  font-size:21px; font-weight:800; color:var(--accent-2);
+}
+.greeting-sign figcaption{ color:var(--text-dim); font-size:14px; }
+
+/* ---------- 주대 ---------- */
+.price-grid{
+  display:grid; gap:18px;
+  grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
+}
+.price-card{
+  background:var(--panel); border:1px solid var(--line);
+  border-radius:var(--radius); padding:28px 24px;
+  display:flex; flex-direction:column;
+  transition:.25s ease;
+}
+.price-card:hover{ transform:translateY(-4px); border-color:var(--accent); }
+.price-top{
+  border-color:var(--accent);
+  background:linear-gradient(180deg, rgba(201,162,39,.09), var(--panel) 55%);
+}
+.price-head{
+  padding-bottom:18px; margin-bottom:18px;
+  border-bottom:1px solid var(--line);
+}
+.price-badge{
+  display:inline-block; margin-bottom:12px;
+  font-size:11.5px; font-weight:700; letter-spacing:.14em;
+  color:var(--accent); border:1px solid var(--accent);
+  border-radius:100px; padding:4px 12px;
+}
+.price-amount{
+  font-size:38px; font-weight:800; letter-spacing:-.03em;
+  color:var(--accent-2); line-height:1.1;
+}
+.price-amount span{ font-size:17px; font-weight:600; margin-left:3px; }
+.price-list li{
+  padding:9px 0; font-size:15px; color:var(--text-dim);
+  padding-left:16px; position:relative;
+}
+.price-list li::before{
+  content:''; position:absolute; left:0; top:17px;
+  width:5px; height:5px; border-radius:50%; background:var(--accent);
+}
+.price-note{ margin-top:26px; font-size:13.5px; color:var(--text-dim); }
+
+/* ---------- 장점 (이미지 없음) ---------- */
+.merit-grid{
+  display:grid; gap:18px;
+  grid-template-columns:repeat(auto-fit, minmax(400px,1fr));
+}
+.merit-card{
+  position:relative; overflow:hidden;
+  background:var(--panel); border:1px solid var(--line);
+  border-radius:var(--radius); padding:32px 28px;
+  transition:.25s ease;
+}
+.merit-card:hover{ transform:translateY(-4px); border-color:var(--accent); }
+.merit-num{
+  position:absolute; top:12px; right:20px;
+  font-size:56px; font-weight:800; letter-spacing:-.04em;
+  color:var(--accent); opacity:.12; line-height:1;
+  pointer-events:none;
+}
+.merit-card h3{
+  position:relative; font-size:18.5px; color:var(--accent-2);
+  margin-bottom:12px; padding-bottom:12px;
+}
+.merit-card h3::after{
+  content:''; position:absolute; left:0; bottom:0;
+  width:200px; height:2px; background:var(--accent);
+}
+.merit-card p{ color:var(--text-dim); font-size:15px; }
+
+/* ---------- 이벤트 (이미지 포함) ---------- */
+.event-grid{
+  display:grid; gap:20px;
+  grid-template-columns:repeat(auto-fit, minmax(290px,1fr));
+}
+.event-card{
+  background:var(--panel); border:1px solid var(--line);
+  border-radius:var(--radius); overflow:hidden;
+  display:flex; flex-direction:column;
+  transition:.25s ease;
+}
+.event-card:hover{ transform:translateY(-4px); border-color:var(--accent); }
+.event-img{
+  position:relative;              /* ← 오버레이를 얹으려면 필수 */
+  aspect-ratio:16/9; background:#0d1017;
+  border-bottom:1px solid var(--line); overflow:hidden;
+}
+.event-img img{
+  width:100%; height:100%; object-fit:cover; display:block;
+  transition:transform .4s ease;
+}
+
+/* ▼ 반투명 검은 레이어 (딤 처리)
+   농도는 :root 의 --img-dim 값으로 조절합니다.
+   아래 background 를 통째로 바꾸면 다른 느낌도 가능:
+     그라데이션  → linear-gradient(180deg, rgba(0,0,0,.1), rgba(0,0,0,.7))
+     골드 틴트   → rgba(26,19,0,.45)                                        */
+.event-img::after{
+  content:''; position:absolute; inset:0;
+  background:rgba(0,0,0,var(--img-dim));
+  transition:background .35s ease;
+  pointer-events:none;
+}
+.event-card:hover .event-img::after{
+  background:rgba(0,0,0,var(--img-dim-hover));
+}
+.event-card:hover .event-img img{ transform:scale(1.04); }
+.event-body{ padding:26px; }
+.event-body h3{ font-size:18.5px; color:var(--accent-2); margin-bottom:10px; }
+.event-body p{ color:var(--text-dim); font-size:15px; }
+.event-cta{ margin-top:36px; text-align:center; }
+
+/* ---------- 위치 ---------- */
+.location-grid{
+  display:grid; gap:28px;
+  grid-template-columns:1fr 1.15fr;
+}
+.location-info dl{ margin-bottom:28px; }
+.location-info dt{
+  color:var(--accent); font-size:13px; font-weight:700;
+  letter-spacing:.08em; margin-top:18px;
+}
+.location-info dt:first-child{ margin-top:0; }
+.location-info dd{ font-size:16px; margin-top:4px; }
+.tel{ font-size:22px; font-weight:800; color:var(--accent-2); }
+.location-cta{ display:flex; gap:10px; flex-wrap:wrap; }
+
+.map{
+  min-height:360px; border-radius:var(--radius);
+  border:1px solid var(--line); overflow:hidden; background:var(--panel);
+}
+.map-placeholder{
+  height:100%; min-height:360px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:6px; color:var(--text-dim); font-size:15px; text-align:center;
+}
+
+/* ---------- 푸터 ---------- */
+.site-footer{
+  background:#080a0e; border-top:1px solid var(--line);
+  padding:52px 0 110px; text-align:center;
+}
+.foot-name{ font-weight:800; color:var(--accent); margin-bottom:12px; }
+.foot-line{ color:var(--text-dim); font-size:14px; }
+.foot-note{ color:var(--text-dim); font-size:13px; margin-top:14px; }
+.copy{ color:#5a6070; font-size:12.5px; margin-top:18px; }
+
+/* ---------- 모바일 전화 버튼 ---------- */
+.float-call{
+  font-size:15.5px;
+  position:fixed; left:16px; right:16px; bottom:16px; z-index:60;
+  display:none; text-align:center;
+  background:var(--accent); color:#1a1300;
+  font-weight:700; padding:16px; border-radius:100px;
+  box-shadow:0 8px 24px rgba(0,0,0,.45);
+}
+
+/* ---------- 반응형 ---------- */
+@media (max-width:860px){
+  .location-grid{ grid-template-columns:1fr; }
+  .greeting{ grid-template-columns:1fr; }
+}
+@media (max-width:640px){
+  .nav{ display:none; }
+  .greeting-body{ padding:26px 22px; font-size:15.5px; }
+  .price-amount{ font-size:34px; }
+  .section{ padding:64px 0; }
+  .float-call{ display:block; }
+  .site-footer{ padding-bottom:110px; }
+}
+
+/* ---------- 스크롤 등장 애니메이션 ---------- */
+.reveal{ opacity:0; transform:translateY(22px); transition:.6s ease; }
+.reveal.on{ opacity:1; transform:none; }
+@media (prefers-reduced-motion:reduce){
+  .reveal{ opacity:1; transform:none; transition:none; }
+  html{ scroll-behavior:auto; }
+}
